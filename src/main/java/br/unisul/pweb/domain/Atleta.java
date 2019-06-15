@@ -1,73 +1,59 @@
 package br.unisul.pweb.domain;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 @Entity
-public class Evento {
-/* id, data, cidade, nome, categorias(distancia) */
-	
+public class Atleta {
+
 	private static final long serialVersionUID = 1L;
 	
-	@Id //informa ao bd que se trata de uma ID
-	@GeneratedValue(strategy=GenerationType.IDENTITY) // informa que é um AUTOINCREMENT
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
-	private Date data;
-	
-	private String cidade;
-	
 	private String nome;
+	private Integer idade;
+	private char sexo;
 	
-	public Evento() {
+	public Atleta() {
 		
 	}
 	
-	public Evento(Integer id, Date data, String cidade, String nome) {
+	public Atleta(Integer id, String nome, Integer idade, char sexo) {
 		super();
 		this.id = id;
-		this.data = data;
-		this.cidade = cidade;
 		this.nome = nome;
+		this.idade = idade;
+		this.sexo = sexo;
 	}
-
+	
+	
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public Date getData() {
-		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public Integer getIdade() {
+		return idade;
+	}
+	public void setIdade(Integer idade) {
+		this.idade = idade;
+	}
+	public char getSexo() {
+		return sexo;
+	}
+	public void setSexo(char sexo) {
+		this.sexo = sexo;
 	}
 	
 	
@@ -87,7 +73,7 @@ public class Evento {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Evento other = (Evento) obj;
+		Atleta other = (Atleta) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -95,19 +81,4 @@ public class Evento {
 			return false;
 		return true;
 	}
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
