@@ -14,6 +14,8 @@ public class Categoria {
 	private Integer id;
 	
 	private Double distancia;
+	
+	@ManyToOne
 
 	public Categoria() {
 		

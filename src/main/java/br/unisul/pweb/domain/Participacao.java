@@ -1,36 +1,54 @@
 package br.unisul.pweb.domain;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Participacao {
 
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	@JsonIgnore
+	@EmbeddedId
+	private ParticipacaoPK id = new ParticipacaoPK();
 	
+
 	public Participacao() {
 		
 	}
 	
-	public Participacao(Integer id) {
+	public Participacao(Evento evento, Atleta atleta) {
 		super();
-		this.id = id;
+		id.setEvento(evento);
+		id.setAtleta(atleta);
 	}
 	
+	@JsonIgnore
+	public Evento getEvento() {
+		return id.getEvento();
+	}
+	
+	public void setEvento(Evento evento) {
+		id.setEvento(evento);
+	}
+	
+	public void setAtleta(Atleta atleta) {
+		id.setAtleta(atleta);
+	}
+	
+	public Atleta getAtleta() {
+		return id.getAtleta();
+	}
+	
+	public ParticipacaoPK getId() {
+		return id;
+	}
+	
+	public void setId(ParticipacaoPK id) {
+		this.id = id;
+	}
 	
 	@Override
 	public int hashCode() {
@@ -56,4 +74,32 @@ public class Participacao {
 			return false;
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(getAtleta().getNome());
+		builder.append(getEvento().getNome());
+		builder.append("\n");
+		return builder.toString();
+	}
+	
+	
+
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

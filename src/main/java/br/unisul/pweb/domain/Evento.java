@@ -1,13 +1,23 @@
 package br.unisul.pweb.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Evento {
@@ -21,6 +31,17 @@ public class Evento {
 	
 	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private Date data;
+	
+	@OneToMany(mappedBy="id.participacao")
+	private Set<Participacao> participantes = new HashSet<>();
+	
+	@JsonIgnore
+	@OneToMany
+	@JoinTable(name = "EVENTO_CATEGORIA",
+		joinColumns = @JoinColumn(name = "evento_id"),
+		inverseJoinColumns = @JoinColumn(name = "categoria_id")
+	)
+	private List<Categoria> categorias = new ArrayList<>();
 	
 	private String cidade;
 	
@@ -36,6 +57,23 @@ public class Evento {
 		this.data = data;
 		this.cidade = cidade;
 		this.nome = nome;
+	}
+
+	
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
+
+	public Set<Participacao> getParticipantes() {
+		return participantes;
+	}
+
+	public void setParticipantes(Set<Participacao> participantes) {
+		this.participantes = participantes;
 	}
 
 	public Integer getId() {

@@ -1,9 +1,15 @@
 package br.unisul.pweb.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Atleta {
@@ -18,6 +24,10 @@ public class Atleta {
 	private Integer idade;
 	private char sexo;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy="id.atleta")
+	private Set<Participacao> atletas = new HashSet<>();
+	
 	public Atleta() {
 		
 	}
@@ -31,6 +41,14 @@ public class Atleta {
 	}
 	
 	
+	public Set<Participacao> getAtletas() {
+		return atletas;
+	}
+
+	public void setAtletas(Set<Participacao> atletas) {
+		this.atletas = atletas;
+	}
+
 	public Integer getId() {
 		return id;
 	}
