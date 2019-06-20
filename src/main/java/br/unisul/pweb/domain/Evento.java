@@ -1,10 +1,7 @@
 package br.unisul.pweb.domain;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -29,18 +27,15 @@ public class Evento {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) // informa que é um AUTOINCREMENT
 	private Integer id;
 	
-	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
-	private Date data;
 	
-	@OneToMany(mappedBy="id.participacao")
-	private Set<Participacao> participantes = new HashSet<>();
+	private String data;
 	
 	@JsonIgnore
-	@OneToMany
-	@JoinTable(name = "EVENTO_CATEGORIA",
-		joinColumns = @JoinColumn(name = "evento_id"),
-		inverseJoinColumns = @JoinColumn(name = "categoria_id")
-	)
+	@OneToMany(mappedBy="evento")
+	private List<Participacao> participantes = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="evento")
 	private List<Categoria> categorias = new ArrayList<>();
 	
 	private String cidade;
@@ -51,7 +46,7 @@ public class Evento {
 		
 	}
 	
-	public Evento(Integer id, Date data, String cidade, String nome) {
+	public Evento(Integer id, String data, String cidade, String nome) {
 		super();
 		this.id = id;
 		this.data = data;
@@ -68,11 +63,11 @@ public class Evento {
 		this.categorias = categorias;
 	}
 
-	public Set<Participacao> getParticipantes() {
+	public List<Participacao> getParticipantes() {
 		return participantes;
 	}
 
-	public void setParticipantes(Set<Participacao> participantes) {
+	public void setParticipantes(List<Participacao> participantes) {
 		this.participantes = participantes;
 	}
 
@@ -82,13 +77,13 @@ public class Evento {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
+	}	
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
@@ -138,7 +133,12 @@ public class Evento {
 
 
 
-
+/* 	@JsonIgnore
+	@OneToMany
+	@JoinTable(name = "EVENTO_CATEGORIA",
+		joinColumns = @JoinColumn(name = "evento_id"),
+		inverseJoinColumns = @JoinColumn(name = "categoria_id")
+	)*/
 
 
 

@@ -1,6 +1,7 @@
 package br.unisul.pweb.domain;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -23,30 +24,40 @@ public class Atleta {
 	private String nome;
 	private Integer idade;
 	private char sexo;
+	private String equipe;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="id.atleta")
-	private Set<Participacao> atletas = new HashSet<>();
+	@OneToMany(mappedBy="atleta")
+	private List<Participacao> participacoes = new ArrayList<>();
 	
 	public Atleta() {
 		
 	}
 	
-	public Atleta(Integer id, String nome, Integer idade, char sexo) {
+	public Atleta(Integer id, String nome, Integer idade, char sexo,String equipe) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.idade = idade;
 		this.sexo = sexo;
+		this.equipe = equipe;
 	}
 	
-	
-	public Set<Participacao> getAtletas() {
-		return atletas;
+
+	public String getEquipe() {
+		return equipe;
 	}
 
-	public void setAtletas(Set<Participacao> atletas) {
-		this.atletas = atletas;
+	public void setEquipe(String equipe) {
+		this.equipe = equipe;
+	}
+
+	public List<Participacao> getParticipacoes() {
+		return participacoes;
+	}
+
+	public void setParticipacoes(List<Participacao> participacoes) {
+		this.participacoes = participacoes;
 	}
 
 	public Integer getId() {

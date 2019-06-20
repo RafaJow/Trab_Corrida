@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Categoria {
@@ -16,6 +18,8 @@ public class Categoria {
 	private Double distancia;
 	
 	@ManyToOne
+	@JoinColumn(name = "evento_id")
+	private Evento evento;
 
 	public Categoria() {
 		
