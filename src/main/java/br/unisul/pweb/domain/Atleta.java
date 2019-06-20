@@ -25,6 +25,7 @@ public class Atleta {
 	private Integer idade;
 	private char sexo;
 	private String equipe;
+	private double distancia;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="atleta")
@@ -34,15 +35,25 @@ public class Atleta {
 		
 	}
 	
-	public Atleta(Integer id, String nome, Integer idade, char sexo,String equipe) {
+	public Atleta(Integer id, String nome, Integer idade, char sexo,String equipe, double distancia) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.idade = idade;
 		this.sexo = sexo;
 		this.equipe = equipe;
+		this.distancia = distancia;
 	}
 	
+	
+
+	public double getDistancia() {
+		return distancia;
+	}
+
+	public void setDistancia(double distancia) {
+		this.distancia = distancia;
+	}
 
 	public String getEquipe() {
 		return equipe;
