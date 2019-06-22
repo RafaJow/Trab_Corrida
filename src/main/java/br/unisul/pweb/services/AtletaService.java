@@ -1,5 +1,6 @@
 package br.unisul.pweb.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,13 @@ public class AtletaService {
 	@Autowired
 	private AtletaRepository repo;
 	
+	//BUSCAR POR ID
 	public Atleta find(Integer id) {
 		Optional<Atleta> obj = repo.findById(id);
 		return obj.orElse(null);
 	}
 	
-	
+	//UPDATE / ATUALIZAR
 	public Atleta update(Atleta obj) {
 		Atleta newObj = find(obj.getId());
 		updateData(newObj, obj);
@@ -33,6 +35,11 @@ public class AtletaService {
 		newObj.setEquipe(obj.getEquipe());
 		newObj.setDistancia(obj.getDistancia());
 		
+	}
+	
+	//BUSCAR POR NOME
+	public List<Atleta> buscaPorNome(String nome){
+		return repo.findDistinctByNomeContainingOrderByNome(nome);
 	}
 	
 }
