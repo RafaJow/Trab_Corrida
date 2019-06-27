@@ -12,5 +12,5 @@ public interface AtletaRepository extends JpaRepository<Atleta, Integer>{
 	@Transactional(readOnly=true)
 	public List<Atleta> findAllByOrderByNome();
 	
-	List<Atleta> findDistinctByNomeContainingOrderByNome(String nome;)
+	List<Atleta> findDistinctByNomeContainingOrderByNome(String nome);
 }
