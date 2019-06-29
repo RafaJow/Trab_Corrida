@@ -12,13 +12,15 @@ import br.unisul.pweb.domain.Evento;
 
 public interface AtletaRepository extends JpaRepository<Atleta, Integer>{
 
-	@Transactional(readOnly=true)
-	@Query("SELECT obj FROM Atleta obj WHERE obj.evento.id = :eventoId ORDER BY obj.nome")
-	public List<Atleta> findAtletas(@Param("eventoId") Integer evento_id);
 	
+	@Transactional(readOnly=true)
 	public List<Atleta> findAllByOrderByNome();
 	
 	List<Atleta> findDistinctByNomeContainingOrderByNome(String nome);
 	
-	List<Atleta> findDistinctByNomeContainingAndEventoIn(String nome, List<Evento> evento);
+	//List<Atleta> findDistinctByNomeContainingAndEventoIn(String nome, List<Evento> evento);
 }
+/*
+@Query("SELECT obj FROM Atleta obj WHERE obj.evento.id = :eventoId ORDER BY obj.nome")
+public List<Atleta> findAtletas(@Param("eventoId") Integer evento_id);
+*/

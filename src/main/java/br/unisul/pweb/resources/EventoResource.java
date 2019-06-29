@@ -45,6 +45,7 @@ public class EventoResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	/*
 	//LISTAR ATLETAS DE UM EVENTO
 	@RequestMapping(value="/{eventoId}/atletas", method=RequestMethod.GET)
 	public ResponseEntity<List<AtletaDTO>> findAtletas(@PathVariable Integer eventoId){
@@ -52,4 +53,5 @@ public class EventoResource {
 		List<AtletaDTO> listDto = list.stream().map(obj -> new AtletaDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}		
+	*/
 }

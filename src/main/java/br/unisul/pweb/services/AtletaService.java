@@ -49,7 +49,9 @@ public class AtletaService {
 		return repo.save(obj);
 	}
 	
+	/*
 	public List<Atleta> findByEvento(Integer eventoId) {
 		return repo.findAtletas(eventoId);
 	}
+	*/
 }
