@@ -41,5 +41,15 @@ public class AtletaService {
 	public List<Atleta> buscaPorNome(String nome){
 		return repo.findDistinctByNomeContainingOrderByNome(nome);
 	}
+
 	
+	//INSERIR
+	public Atleta insert (Atleta obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+	public List<Atleta> findByEvento(Integer eventoId) {
+		return repo.findAtletas(eventoId);
+	}
 }
