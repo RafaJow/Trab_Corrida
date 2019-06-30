@@ -49,6 +49,12 @@ public class AtletaService {
 		return repo.save(obj);
 	}
 	
+	//DELETAR
+	public void delete (Integer id) {
+		find(id);
+		repo.deleteById(id);
+	}
+	
 	/*
 	public List<Atleta> findByEvento(Integer eventoId) {
 		return repo.findAtletas(eventoId);
