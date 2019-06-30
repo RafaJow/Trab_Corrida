@@ -1,7 +1,8 @@
 package br.unisul.pweb.resources;
 
 import java.net.URI;
-import java.net.URL;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,10 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.unisul.pweb.domain.Atleta;
+import br.unisul.pweb.dtos.AtletaDTO;
+import br.unisul.pweb.resources.utils.URL;
 import br.unisul.pweb.services.AtletaService;
 
 @RestController
@@ -51,5 +55,16 @@ public class AtletaResource {
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
+	}
+	
+	//FILTRAR POR NOME
+	@RequestMapping(value="/filtro",method=RequestMethod.GET)
+	public ResponseEntity<List<AtletaDTO>> filtrarPorNome(
+			@RequestParam(value = "nome", defaultValue = "") String nome
+		){
+		String nomeDecoded = URL.decodeParam(nome);
+		List<Atleta> lista = service.buscaPorNome(nomeDecoded);
+		List<AtletaDTO> listaDTO = lista.stream().map(obj -> new AtletaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listaDTO);
 	}
 }
