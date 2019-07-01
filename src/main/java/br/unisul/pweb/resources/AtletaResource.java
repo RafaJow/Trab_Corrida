@@ -1,6 +1,7 @@
 package br.unisul.pweb.resources;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -65,6 +66,17 @@ public class AtletaResource {
 		String nomeDecoded = URL.decodeParam(nome);
 		List<Atleta> lista = service.buscaPorNome(nomeDecoded);
 		List<AtletaDTO> listaDTO = lista.stream().map(obj -> new AtletaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listaDTO);
+	}
+	
+	//LISTAR TODOS
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<AtletaDTO>> findAll() {
+		List<Atleta> lista = service.findAll();
+		List<AtletaDTO> listaDTO = new ArrayList<AtletaDTO>();
+		for (Atleta a : lista) {
+			listaDTO.add(new AtletaDTO(a));
+		}
 		return ResponseEntity.ok().body(listaDTO);
 	}
 }

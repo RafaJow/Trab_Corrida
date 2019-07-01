@@ -55,6 +55,11 @@ public class AtletaService {
 		repo.deleteById(id);
 	}
 	
+	//LISTAR TODAS
+	public List<Atleta> findAll(){
+		return repo.findAll();
+	}
+	
 	/*
 	public List<Atleta> findByEvento(Integer eventoId) {
 		return repo.findAtletas(eventoId);
