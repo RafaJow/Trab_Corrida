@@ -1,5 +1,6 @@
 package br.unisul.pweb.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,25 @@ public class CategoriaService {
 		return repo.save(obj);
 	}
 	
+	//UPDATE / ATUALIZAR
+	public Categoria update(Categoria obj) {
+		Categoria newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
 	
+	public void updateData(Categoria newObj, Categoria obj) {
+		newObj.setDistancia(obj.getDistancia());
+	}
+	
+	//DELETAR
+	public void delete (Integer id) {
+		find(id);
+		repo.deleteById(id);
+	}
+	
+	//LISTAR TODAS
+	public List<Categoria> findAll(){
+		return repo.findAll();
+	}
 }

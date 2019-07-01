@@ -1,5 +1,6 @@
 package br.unisul.pweb.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,4 +26,34 @@ public class EventoService {
 		obj.setId(null);
 		return repo.save(obj);
 	}
+	
+	//DELETAR
+	public void delete (Integer id) {
+		find(id);
+		repo.deleteById(id);
+	}
+	
+	//UPDATE / ATUALIZAR
+	public Evento update(Evento obj) {
+		Evento newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
+	
+	public void updateData(Evento newObj, Evento obj) {
+		newObj.setData(obj.getData());
+		newObj.setCidade(obj.getCidade());
+		newObj.setCategorias(obj.getCategorias());
+		newObj.setNome(obj.getNome());
+	}
+	
+	//BUSCAR POR NOME
+	public List<Evento> buscaPorNome(String nome){
+		return repo.findDistinctByNomeContainingOrderByNome(nome);
+	}
+		
+	//LISTAR TODAS
+	public List<Evento> findAll(){
+		return repo.findAll();
+	}	
 }
