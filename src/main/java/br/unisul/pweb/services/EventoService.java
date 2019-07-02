@@ -45,6 +45,7 @@ public class EventoService {
 		newObj.setCidade(obj.getCidade());
 		newObj.setCategorias(obj.getCategorias());
 		newObj.setNome(obj.getNome());
+		newObj.setData(obj.getData());
 	}
 	
 	//BUSCAR POR NOME
