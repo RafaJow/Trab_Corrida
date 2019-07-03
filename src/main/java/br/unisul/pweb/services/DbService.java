@@ -47,10 +47,14 @@ public class DbService {
 		Evento eve1 = new Evento(null, "01-01-01", "Tubarao", "Corrida da folha");
 		Evento eve2 = new Evento(null, "02-02-02", "Garopaba", "Corrida da areia");
 		
+		//eve1.getCategorias().addAll(Arrays.asList(cat1eve1, cat2eve1));
+		//eve2.getCategorias().addAll(Arrays.asList(cat1eve2, cat2eve2));
+		
+		categoriaRepository.saveAll(Arrays.asList(cat1eve1,cat2eve1,cat1eve2,cat2eve2));
+		
 		eve1.getCategorias().addAll(Arrays.asList(cat1eve1, cat2eve1));
 		eve2.getCategorias().addAll(Arrays.asList(cat1eve2, cat2eve2));
 		
-		categoriaRepository.saveAll(Arrays.asList(cat1eve1,cat2eve1,cat1eve2,cat2eve2));
 		eventoRepository.saveAll(Arrays.asList(eve1,eve2));
 		atletaRepository.saveAll(Arrays.asList(atle1,atle2));
 		
