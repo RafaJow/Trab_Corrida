@@ -2,6 +2,7 @@ package br.unisul.pweb.services;
 
 import java.text.ParseException;
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,16 +33,19 @@ public class DbService {
 	
 	public void inicializaBancoDeDados() throws ParseException {
 		
+		
 		Atleta atle1 = new Atleta(null, "Joao", 20, 'M', "Equipe1", 15.00);
 		Atleta atle2 = new Atleta(null, "Ana", 30, 'F', "Equipe2", 30.00);
-		
-		Evento eve1 = new Evento(null, "01-01-01", "Tubarao", "Corrida da folha");
-		Evento eve2 = new Evento(null, "02-02-02", "Garopaba", "Corrida da areia");
+
 		
 		Categoria cat1eve1 = new Categoria(null, 15.00);
 		Categoria cat2eve1 = new Categoria(null, 30.00);
 		Categoria cat1eve2 = new Categoria(null, 30.00);
 		Categoria cat2eve2 = new Categoria(null, 40.00);
+		
+		
+		Evento eve1 = new Evento(null, "01-01-01", "Tubarao", "Corrida da folha");
+		Evento eve2 = new Evento(null, "02-02-02", "Garopaba", "Corrida da areia");
 		
 		eve1.getCategorias().addAll(Arrays.asList(cat1eve1, cat2eve1));
 		eve2.getCategorias().addAll(Arrays.asList(cat1eve2, cat2eve2));
@@ -59,5 +63,7 @@ public class DbService {
 		
 		participacaoRepository.saveAll(Arrays.asList(part1eve1, part2eve1, part1eve2));
 		
+		System.out.println("======================================================================================");
+		System.out.println(" assssssss"+eve1.getCategorias().toString());
 	}
 }

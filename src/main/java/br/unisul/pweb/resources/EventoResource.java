@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.unisul.pweb.domain.Categoria;
 import br.unisul.pweb.domain.Evento;
+import br.unisul.pweb.dtos.CategoriaDTO;
 import br.unisul.pweb.dtos.EventoDTO;
 import br.unisul.pweb.resources.utils.URL;
-import br.unisul.pweb.services.AtletaService;
+import br.unisul.pweb.services.CategoriaService;
 import br.unisul.pweb.services.EventoService;
 
 @RestController
@@ -29,7 +31,7 @@ public class EventoResource {
 	private EventoService service;
 	
 	@Autowired
-	private AtletaService atletaService;
+	private CategoriaService categoriaService;
 	
 	//BUSCAR POR ID
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
@@ -61,7 +63,7 @@ public class EventoResource {
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
-		
+
 	
 	//FILTRAR POR NOME
 	@RequestMapping(value="/filtro",method=RequestMethod.GET)
@@ -86,13 +88,13 @@ public class EventoResource {
 	}
 	
 	
-	/*
-	//LISTAR ATLETAS DE UM EVENTO
-	@RequestMapping(value="/{eventoId}/atletas", method=RequestMethod.GET)
-	public ResponseEntity<List<AtletaDTO>> findAtletas(@PathVariable Integer eventoId){
-		List<Atleta> list = atletaService.findByEvento(eventoId);
-		List<AtletaDTO> listDto = list.stream().map(obj -> new AtletaDTO(obj)).collect(Collectors.toList());
+	
+	//LISTAR CATEGORIAS DE UM EVENTO
+	@RequestMapping(value="/{eventoId}/categorias", method=RequestMethod.GET)
+	public ResponseEntity<List<CategoriaDTO>> findCategorias(@PathVariable Integer eventoId){
+		List<Categoria> list = categoriaService.findByEvento(eventoId);
+		List<CategoriaDTO> listDto = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}		
-	*/
+	
 }

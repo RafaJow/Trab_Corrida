@@ -48,4 +48,9 @@ public class CategoriaService {
 	public List<Categoria> findAll(){
 		return repo.findAll();
 	}
+	
+	//ACHAR POR EVENTO
+	public List<Categoria> findByEvento(Integer eventoId) {
+		return repo.findCategorias(eventoId);
+	}
 }

@@ -48,5 +48,7 @@ public class Categoria {
 		this.distancia = distancia;
 	}
 	
-	
+	public String toString() {
+		return this.distancia+"";
+	}
 }
