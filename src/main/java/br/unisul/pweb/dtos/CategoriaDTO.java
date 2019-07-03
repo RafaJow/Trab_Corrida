@@ -35,7 +35,7 @@ public class CategoriaDTO implements Serializable{
 	public void setDistancia(double distancia) {
 		this.distancia = distancia;
 	}
-	
+	/*
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -60,5 +60,5 @@ public class CategoriaDTO implements Serializable{
 			return false;
 		return true;
 	}
-	
+	*/
 }

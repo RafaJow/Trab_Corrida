@@ -7,13 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.unisul.pweb.domain.Categoria;
+import br.unisul.pweb.domain.Evento;
 import br.unisul.pweb.repository.CategoriaRepository;
+import br.unisul.pweb.repository.EventoRepository;
 
 @Service
 public class CategoriaService {
 
 	@Autowired
 	private CategoriaRepository repo;
+	
+	@Autowired
+	private EventoRepository eventoRepository;
 	
 	//BUSCAR POR ID
 	public Categoria find (Integer id) {
@@ -53,4 +58,11 @@ public class CategoriaService {
 	public List<Categoria> findByEvento(Integer eventoId) {
 		return repo.findCategorias(eventoId);
 	}
+	
+	public List<Categoria> search(Integer id, List<Integer> ids){
+		List<Evento> evento = eventoRepository.findAllById(ids);
+		return repo.findDistinctByIdContainingAndEventoIn(id, evento);
+	}
+	
+	
 }

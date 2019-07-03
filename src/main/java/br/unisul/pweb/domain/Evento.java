@@ -7,40 +7,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Evento {
-/* id, data, cidade, nome, categorias(distancia) */
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id //informa ao bd que se trata de uma ID
 	@GeneratedValue(strategy=GenerationType.IDENTITY) // informa que é um AUTOINCREMENT
 	private Integer id;
-	
-	
 	private String data;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy="evento")
-	private List<Participacao> participantes = new ArrayList<>();
+	private String cidade;
+	private String nome;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="evento")
 	private List<Categoria> categorias = new ArrayList<>();
 	
-	private String cidade;
 	
-	private String nome;
+	@JsonIgnore
+	@OneToMany(mappedBy="evento")
+	private List<Participacao> participantes = new ArrayList<>();
 	
 	public Evento() {
 		

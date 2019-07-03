@@ -17,4 +17,10 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
 	public List<Categoria> findCategorias(@Param("eventoId") Integer evento_id);
 	
 	public List<Categoria> findByEvento(Evento evento);
+	
+	List<Categoria> findDistinctByIdContainingAndEventoIn(
+			Integer id,
+			List<Evento> evento
+	);
+	
 }

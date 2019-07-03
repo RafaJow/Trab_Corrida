@@ -29,6 +29,7 @@ public class EventoDTO implements Serializable {
 		nome = obj.getNome();
 		data = obj.getData();
 		cidade = obj.getCidade();
+		
 	}
 
 	public Integer getId() {
